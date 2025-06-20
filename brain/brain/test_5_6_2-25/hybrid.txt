@@ -1,0 +1,204 @@
+"""
+Hybrid Quantum‐Classical π Estimation
+
+This script implements a “quantum‐seeded classical Monte Carlo” estimator for π, 
+with the following features:
+  1. Quantum Random Number Generator (QRNG) using Qiskit’s AerSimulator:
+     - A single n_qubit circuit in uniform superposition (all Hadamards).
+     - We measure it in batches of shots to obtain many random bit‐strings at once.
+     - Each bit‐string is split into x_bits and y_bits to get (x,y) ∈ [–1,1]².
+
+  2. Classical Monte Carlo loop:
+     - Repeatedly draw batches of (x,y) from the QRNG.
+     - Count how many points fall inside the unit circle.
+     - Update a running estimate of π = 4 * (points_inside / total_points).
+     - Continue until the standard error of π is below a user‐specified threshold.
+
+  3. Inverse‐variance weighting (if a second estimator is available):
+     - In this version, we only implement the quantum‐seeded MC part.
+     - If you have another π estimate with its own uncertainty (e.g., from QAE),
+       you could combine them via inverse‐variance weighting:
+         w1 = 1/σ1²,  w2 = 1/σ2²
+         π_hybrid = (w1·π1 + w2·π2) / (w1 + w2)
+
+Requirements:
+  • qiskit (including qiskit‐aer)  
+  • numpy
+
+Usage:
+  • Adjust `N_QUBITS`, `MC_BATCH_SIZE`, and `TARGET_STD_ERROR` as desired.
+  • Run `python hybrid_pi_estimator.py`
+"""
+
+import numpy as np
+import time
+from qiskit import QuantumCircuit, transpile
+from qiskit_aer import AerSimulator
+
+
+class QuantumPRNG:
+    """
+    A quantum random‐number generator that returns (x, y) pairs in [–1,1]².
+
+    We use `n_qubits` total qubits = n_qubits//2 bits for x, n_qubits//2 bits for y.
+    Each time we call get_random_pairs(batch_size), we run one circuit (H⊗n_qubits
+    + measurement) for `shots = batch_size`, and parse each measurement string into
+    two integers (i_x, i_y), then map them to floats in [–1,1].
+    """
+
+    def __init__(self, n_qubits: int, batch_size: int):
+        assert n_qubits >= 2 and (n_qubits % 2 == 0), "n_qubits must be an even integer ≥ 2"
+        self.n_qubits = n_qubits
+        self.batch_size = batch_size
+        self.backend = AerSimulator()
+
+        # Pre‐build and transpile the “all‐Hadamard + measure” circuit once:
+        qc = QuantumCircuit(self.n_qubits, self.n_qubits)
+        qc.h(range(self.n_qubits))
+        qc.measure(range(self.n_qubits), range(self.n_qubits))
+        self._transpiled_qc = transpile(qc, self.backend)
+
+        # Precompute bit‐split indices
+        self._half = self.n_qubits // 2
+        self._max_x = 2 ** self._half - 1
+        self._max_y = 2 ** self._half - 1
+
+    def get_random_pairs(self, n_pairs: int):
+        """
+        Return exactly `n_pairs` samples (x, y), each ∈ [–1,1]².
+        Internally, we request `shots = min(batch_size, n_pairs)` per run,
+        collect counts, and continue until we have n_pairs total.
+
+        Returns:
+            xs: np.ndarray of shape (n_pairs,)
+            ys: np.ndarray of shape (n_pairs,)
+        """
+        xs = []
+        ys = []
+        needed = n_pairs
+
+        while needed > 0:
+            shots = min(self.batch_size, needed)
+            job = self.backend.run(self._transpiled_qc, shots=shots)
+            result = job.result()
+            counts = result.get_counts()
+
+            # Each key in `counts` is an n_qubit bitstring (e.g. '011010').
+            # We split into y_bits = first half, x_bits = second half.
+            # Note: Qiskit returns bitstrings with qubit‐0 as the rightmost bit by default.
+            for bitstr, freq in counts.items():
+                # Interpret rightmost self._half bits as x_bits:
+                x_bits = bitstr[-self._half:]
+                # Interpret leftmost self._half bits as y_bits:
+                y_bits = bitstr[:self._half]
+
+                int_x = int(x_bits, 2)
+                int_y = int(y_bits, 2)
+
+                # Map ints to floats in [–1,1]:
+                x = -1 + 2 * int_x / self._max_x
+                y = -1 + 2 * int_y / self._max_y
+
+                # Append (x, y) `freq` times, but do not exceed needed
+                for _ in range(freq):
+                    if len(xs) < n_pairs:
+                        xs.append(x)
+                        ys.append(y)
+                    else:
+                        break
+
+                if len(xs) >= n_pairs:
+                    break
+
+            needed = n_pairs - len(xs)
+
+        return np.array(xs), np.array(ys)
+
+
+def quantum_seeded_monte_carlo(
+    target_std_error: float = 0.002,
+    coord_qubits: int = 10,
+    mc_batch_size: int = 200,
+    max_batches: int = 1000
+):
+    """
+    Perform a classical Monte Carlo π estimation, but draw random (x,y) from
+    a quantum PRNG in batches of size `mc_batch_size`.
+
+    Args:
+        target_std_error (float): desired standard error on π.
+        coord_qubits (int): total qubits used by the QRNG (must be even).
+        mc_batch_size (int): how many (x,y) points to draw per quantum circuit run.
+        max_batches (int): maximum number of batches to run before giving up.
+
+    Returns:
+        pi_estimate (float): final π estimate
+        std_error (float): estimated standard error of π_estimate
+        total_points (int): total (x,y) points sampled
+        history (list of floats): π estimates after each batch
+        times (list of floats): cumulative wall time after each batch
+    """
+    # Initialize QRNG
+    prng = QuantumPRNG(n_qubits=coord_qubits, batch_size=mc_batch_size)
+
+    total_points = 0
+    points_inside = 0
+
+    history = []
+    times = []
+    t0 = time.time()
+
+    for batch_idx in range(1, max_batches + 1):
+        # Draw mc_batch_size new (x,y) pairs
+        xs, ys = prng.get_random_pairs(mc_batch_size)
+        inside_count = np.count_nonzero(xs * xs + ys * ys <= 1.0)
+        points_inside += inside_count
+        total_points += mc_batch_size
+
+        # Compute π estimate and its standard error
+        p_hat = points_inside / total_points
+        pi_hat = 4 * p_hat
+        std_p_hat = np.sqrt((p_hat * (1 - p_hat)) / total_points)
+        std_pi_hat = 4 * std_p_hat
+
+        history.append(pi_hat)
+        times.append(time.time() - t0)
+
+        # Print progress every 50 batches
+        if batch_idx % 50 == 0 or std_pi_hat < target_std_error:
+            print(
+                f"[Batch {batch_idx:4d}] "
+                f"Samples: {total_points:6d}, "
+                f"π̂ = {pi_hat:.6f}, "
+                f"StdErr = {std_pi_hat:.6f}, "
+                f"Elapsed = {times[-1]:.1f}s"
+            )
+
+        # Stop if desired accuracy reached
+        if std_pi_hat < target_std_error:
+            break
+
+    return pi_hat, std_pi_hat, total_points, history, times
+
+
+if __name__ == "__main__":
+    # ----------------------------
+    # User‐configurable parameters
+    # ----------------------------
+    COORD_QUBITS     = 10     # must be an even integer, e.g. 10 → 5 bits for x, 5 bits for y
+    MC_BATCH_SIZE    = 200    # number of (x,y) points drawn per quantum circuit run
+    TARGET_STD_ERROR = 0.002  # stop once σ(π̂) < 0.002 (~0.06% error)
+
+    # Run the hybrid π‐estimator
+    pi_est, stderr, n_pts, pi_history, time_history = quantum_seeded_monte_carlo(
+        target_std_error=TARGET_STD_ERROR,
+        coord_qubits=COORD_QUBITS,
+        mc_batch_size=MC_BATCH_SIZE,
+        max_batches=1000
+    )
+
+    print("\n" + "=" * 60)
+    print(f"Final π estimate:     {pi_est:.6f}")
+    print(f"Estimated StdError:   {stderr:.6f}")
+    print(f"Total Samples Used:   {n_pts}")
+    print("=" * 60)
