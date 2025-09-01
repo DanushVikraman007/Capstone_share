@@ -1,0 +1,56 @@
+Formatted Date,Summary,Precip Type,Temperature,Apparent Temperature (C),Humidity,Wind Speed (km/h),Wind Bearing (degrees),Visibility (km),Loud Cover,Pressure,Daily Summary,hit_type
+2006-04-07 13:00:00.000 +0200,Partly Cloudy,rain,10,7.1,0.5,23.2162,340,11.2056,0,1015.72,Mostly cloudy until evening.,actual
+2006-04-07 15:00:00.000 +0200,Partly Cloudy,rain,11.06111111,11.06111111,0.46,14.2646,337,11.2056,0,1015.24,Mostly cloudy until evening.,actual
+2006-04-07 16:00:00.000 +0200,Partly Cloudy,rain,10.13888889,10.13888889,0.42,12.558,337,11.2056,0,1015.14,Mostly cloudy until evening.,actual
+2006-04-07 17:00:00.000 +0200,Partly Cloudy,rain,11.01111111,11.01111111,0.42,9.3541,312,11.3988,0,1015.13,Mostly cloudy until evening.,actual
+2006-04-07 18:00:00.000 +0200,Partly Cloudy,rain,10.11666667,10.11666667,0.49,7.6636,335,11.2056,0,1015.39,Mostly cloudy until evening.,actual
+2007-04-18 21:00:00.000 +0200,Mostly Cloudy,rain,12.2,12.2,0.41,22.0248,329,9.982,0,1015.5,Mostly cloudy starting in the morning and breezy in the evening.,actual
+2007-04-20 20:00:00.000 +0200,Partly Cloudy,rain,14.49444444,14.49444444,0.41,8.9999,346,10.3523,0,1015,Partly cloudy starting in the afternoon continuing until evening.,actual
+2007-04-20 21:00:00.000 +0200,Clear,rain,12.89444444,12.89444444,0.45,8.05,349,9.982,0,1015.55,Partly cloudy starting in the afternoon continuing until evening.,actual
+2007-04-20 22:00:00.000 +0200,Clear,rain,12.78333333,12.78333333,0.43,6.3595,347,15.8263,0,1015.96,Partly cloudy starting in the afternoon continuing until evening.,actual
+2007-04-05 16:00:00.000 +0200,Partly Cloudy,rain,12.89444444,12.89444444,0.4,15.7941,297,9.982,0,1015.24,Partly cloudy until night.,actual
+2007-04-05 17:00:00.000 +0200,Partly Cloudy,rain,12.92222222,12.92222222,0.4,13.1376,283,10.3523,0,1015.12,Partly cloudy until night.,actual
+2007-04-09 19:00:00.000 +0200,Mostly Cloudy,rain,14.21111111,14.21111111,0.46,9.499,231,9.982,0,1015.98,Partly cloudy starting in the morning.,actual
+2007-02-01 14:00:00.000 +0100,Windy and Partly Cloudy,rain,10.04444444,10.04444444,0.5,43.5988,317,11.27,0,1015.78,Partly cloudy starting overnight continuing until evening and breezy starting in the morning continuing until evening.,actual
+2007-03-17 20:00:00.000 +0100,Overcast,rain,12.19444444,12.19444444,0.47,22.3468,328,11.2056,0,1015.95,Mostly cloudy starting in the afternoon.,actual
+2007-05-03 09:00:00.000 +0200,Mostly Cloudy,rain,12.33333333,12.33333333,0.42,9.7405,100,11.2056,0,1015.92,Mostly cloudy throughout the day.,actual
+2008-04-01 17:00:00.000 +0200,Overcast,rain,13.03888889,13.03888889,0.47,14.7959,349,10.3523,0,1015.97,Mostly cloudy starting in the morning.,actual
+2008-04-01 18:00:00.000 +0200,Overcast,rain,12.86666667,12.86666667,0.48,16.9211,341,11.2056,0,1015.79,Mostly cloudy starting in the morning.,actual
+2008-04-04 17:00:00.000 +0200,Mostly Cloudy,rain,12.73333333,12.73333333,0.49,27.3378,17,8.7745,0,1015.95,Mostly cloudy starting overnight and breezy in the morning.,actual
+2008-02-27 09:00:00.000 +0100,Mostly Cloudy,rain,13.65555556,13.65555556,0.46,25.0516,259,9.982,0,1015.13,Mostly cloudy starting overnight.,actual
+2008-02-27 10:00:00.000 +0100,Mostly Cloudy,rain,13.86111111,13.86111111,0.46,27.9979,248,9.982,0,1015.32,Mostly cloudy starting overnight.,actual
+2008-03-14 14:00:00.000 +0100,Overcast,rain,11.12777778,11.12777778,0.5,14.2324,240,11.2056,0,1015.11,Mostly cloudy throughout the day.,actual
+2009-04-21 21:00:00.000 +0200,Partly Cloudy,rain,13.88888889,13.88888889,0.47,12.88,10,9.982,0,1015,Mostly cloudy throughout the day.,actual
+2009-04-21 22:00:00.000 +0200,Partly Cloudy,rain,14.44444444,14.44444444,0.42,14.49,10,16.1,0,1015.1,Mostly cloudy throughout the day.,actual
+2009-04-22 00:00:00.000 +0200,Clear,rain,13.33333333,13.33333333,0.47,14.49,30,0,0,1015,Partly cloudy starting overnight.,actual
+2009-04-22 01:00:00.000 +0200,Clear,rain,12.22222222,12.22222222,0.5,11.27,40,0,0,1015.7,Partly cloudy starting overnight.,actual
+2009-04-27 23:00:00.000 +0200,Clear,rain,12.32777778,12.32777778,0.44,18.0803,134,15.5204,0,1015.71,Partly cloudy until evening and breezy starting in the morning continuing until evening.,actual
+2009-03-10 15:00:00.000 +0100,Partly Cloudy,rain,10,6.661111111,0.5,28.98,300,11.27,0,1015.1,Partly cloudy until evening and breezy overnight.,actual
+2010-04-11 14:00:00.000 +0200,Overcast,rain,12.10555556,12.10555556,0.49,9.7727,41,11.4471,0,1015.88,Mostly cloudy throughout the day.,actual
+2010-04-11 15:00:00.000 +0200,Overcast,rain,12.17777778,12.17777778,0.5,8.0178,63,11.27,0,1015.47,Mostly cloudy throughout the day.,actual
+2011-04-10 22:00:00.000 +0200,Partly Cloudy,rain,10.68888889,10.68888889,0.44,17.1304,17,15.8263,0,1015.65,Partly cloudy starting in the morning continuing until night and breezy starting in the afternoon continuing until evening.,actual
+2011-04-09 23:00:00.000 +0200,Clear,rain,10.05,10.05,0.42,19.7064,331,15.3111,0,1015.44,Partly cloudy starting overnight continuing until evening and windy starting in the morning continuing until evening.,actual
+2012-10-11 12:00:00.000 +0200,Partly Cloudy,rain,13.88888889,13.88888889,0.48,17.066,300,11.27,0,1015.95,Partly cloudy until night.,actual
+2012-10-11 16:00:00.000 +0200,Partly Cloudy,rain,14.97222222,14.97222222,0.47,17.066,309,11.2056,0,1015.02,Partly cloudy until night.,actual
+2012-10-11 17:00:00.000 +0200,Partly Cloudy,rain,14.06666667,14.06666667,0.49,13.3952,318,11.3988,0,1015.19,Partly cloudy until night.,actual
+2013-03-06 13:00:00.000 +0100,Mostly Cloudy,rain,14.86111111,14.86111111,0.44,21.8477,162,10.3523,0,1015.68,Mostly cloudy throughout the day.,actual
+2014-04-10 13:00:00.000 +0200,Mostly Cloudy,rain,13.8,13.8,0.4,20.7851,300,15.8263,0,1015.84,Partly cloudy overnight.,actual
+2014-04-10 14:00:00.000 +0200,Mostly Cloudy,rain,12.79444444,12.79444444,0.49,12.719,28,10.3523,0,1015.55,Partly cloudy overnight.,actual
+2014-04-12 18:00:00.000 +0200,Mostly Cloudy,rain,14.97222222,14.97222222,0.47,12.1877,110,10.2557,0,1015.4,Mostly cloudy throughout the day.,actual
+2014-04-16 15:00:00.000 +0200,Mostly Cloudy,rain,13.75,13.75,0.4,31.5399,29,16.1,0,1015.62,Mostly cloudy throughout the day and breezy starting in the evening.,actual
+2014-04-16 16:00:00.000 +0200,Breezy and Mostly Cloudy,rain,12.85,12.85,0.41,34.5184,30,10.2557,0,1015.29,Mostly cloudy throughout the day and breezy starting in the evening.,actual
+2014-03-15 09:00:00.000 +0100,Partly Cloudy,rain,12.31666667,12.31666667,0.5,15.3916,183,12.075,0,1015.2,Mostly cloudy starting in the morning and windy in the evening.,actual
+2014-03-17 08:00:00.000 +0100,Mostly Cloudy,rain,14.81666667,14.81666667,0.48,25.4058,308,16.1,0,1015,Partly cloudy throughout the day and windy starting in the morning continuing until afternoon.,actual
+2014-03-30 20:00:00.000 +0200,Partly Cloudy,rain,12.96111111,12.96111111,0.44,7.0679,121,15.5526,0,1015.74,Partly cloudy starting in the morning continuing until evening.,actual
+2015-04-20 21:00:00.000 +0200,Mostly Cloudy,rain,11.29444444,11.29444444,0.49,11.3183,330,16.1,0,1015.07,Mostly cloudy starting in the morning and breezy starting in the afternoon continuing until evening.,actual
+2015-04-20 22:00:00.000 +0200,Mostly Cloudy,rain,12.26666667,12.26666667,0.45,14.49,330,16.1,0,1015.77,Mostly cloudy starting in the morning and breezy starting in the afternoon continuing until evening.,actual
+2015-03-11 18:00:00.000 +0100,Overcast,rain,11.02222222,11.02222222,0.5,14.7154,319,6.2951,0,1015.3,Mostly cloudy throughout the day.,actual
+2015-03-21 18:00:00.000 +0100,Partly Cloudy,rain,10.22777778,10.22777778,0.42,12.4614,152,16.1,0,1015.13,Partly cloudy starting in the morning continuing until evening.,actual
+2015-03-24 13:00:00.000 +0100,Clear,rain,14.98888889,14.98888889,0.46,23.6509,150,15.5204,0,1015.32,Partly cloudy starting in the afternoon.,actual
+2015-11-15 14:00:00.000 +0100,Mostly Cloudy,rain,13.81666667,13.81666667,0.4,17.2753,211,16.1,0,1015.56,Mostly cloudy throughout the day.,actual
+2016-03-18 14:00:00.000 +0100,Partly Cloudy,rain,12.82222222,12.82222222,0.45,13.041,253,16.1,0,1015.09,Foggy in the morning.,actual
+2016-03-20 14:00:00.000 +0100,Partly Cloudy,rain,12.82222222,12.82222222,0.44,12.4775,289,10.2557,0,1015.9,Mostly cloudy until evening.,actual
+2016-03-21 10:00:00.000 +0100,Mostly Cloudy,rain,10.83333333,10.83333333,0.5,24.6974,322,8.4203,0,1015.92,Partly cloudy starting overnight.,actual
+2016-03-21 12:00:00.000 +0100,Partly Cloudy,rain,12.2,12.2,0.47,23.6992,302,15.1823,0,1015.83,Partly cloudy starting overnight.,actual
+2016-03-21 13:00:00.000 +0100,Partly Cloudy,rain,12.67222222,12.67222222,0.44,19.7225,320,14.7637,0,1015.44,Partly cloudy starting overnight.,actual
+2016-03-25 16:00:00.000 +0100,Mostly Cloudy,rain,10.03888889,10.03888889,0.4,8.9516,213,15.5526,0,1015.37,Mostly cloudy starting in the morning.,actual
