@@ -7,14 +7,10 @@ phase 3 -optimizing with markov chain and multi markov chain
 phase 4 -increasing the dimensions to 3D
 phase 5 -attemting to implement custom problems like weather patterns and alzheimer's
 phase 6 -implementing the base estimation of with quantum computing algorithms
+phase 7 -combining mcmc and greedy controlled via simulated annealing for a custom data prioritization algoithm 
 # implementation procedure plan ?
--pure quantum monte carlo 
--converting classical to quantum via tensor networks 
-# Additional proposition 
--modifying the base algorithm of markov chains with greedy algorithm and icing model
--purpose : mathematically integrating the algorithms for better performance 
-# Final goals that must be acheived other goals are optional
--a working quantum algoritm that works on pure quantum computer not a quantum computer simulation
--comparision of performance metrics like error%,time comparision between classical and quantum
--find the best possible metric configurations
--if possible achieve a middle ground and a hybrid model that gets good acceptable metrics
+add a case where greedy can be quantumized by grovers amplitude amplification 
+# Goals/applications 
+Get the algorithm to prioritize the high quality data points based on conditions given or search the dataset for points that match the description 
+potentially lower energy consuming ml algorithms 
+proposed name - YO -(Yukthi opus)
